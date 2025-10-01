@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 # nietzsche 
 
 <img src="man/figures/nietzsche_hex.svg" align="right" width="120"/>
