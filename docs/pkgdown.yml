@@ -1,0 +1,9 @@
+pandoc: 3.1.2
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  intro: intro.html
+last_built: 2025-10-01T19:40Z
+urls:
+  reference: https://cedricbouffard.github.io/nietzsche/reference
+  article: https://cedricbouffard.github.io/nietzsche/articles

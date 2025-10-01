@@ -1,0 +1,127 @@
+---
+title: "Introduction à l’application nietzsche"
+author: "Cédric Bouffard & Bruce Gélinas"
+output: rmarkdown::html_vignette
+vignette: > 
+  %\VignetteIndexEntry{Introduction à l’application nietzsche (détaillée)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.retina = 2
+)
+```
+
+# Introduction à l’application nietzsche
+
+L’application **nietzsche** vous aide à estimer la **puissance statistique** d’un essai (test *t*) ou la **puissance d’un test d’équivalence** (TOST) en fonction du **nombre de répétitions**, de la **variabilité** et de l’**effet** (additif ou multiplicatif).  
+Cette vignette présente chaque section de l’application à l’aide de captures d’écran et d’**exemples concrets** pour guider vos choix.
+
+---
+
+## 1) Choix initial : Différence vs Équivalence
+
+Au lancement, un **modal d’accueil** vous propose :
+
+- **Comparer des traitements (Différence)** : déterminer si un traitement **augmente ou diminue** significativement le rendement par rapport au témoin.  
+  *Exemple.* Tester si « Azote modulé » améliore le rendement de **> 0,5 t/ha**.
+- **Tester l’équivalence (TOST)** : montrer qu’un traitement est **pratiquement équivalent** au témoin dans une marge ±δ (tolérance pratique).  
+  *Exemple.* Prouver que « Engrais organique » donne un rendement **dans ±5 %** du minéral.
+
+![Modal choix hypothèse](figures/intro/01_modal_hyp_mode.png)
+
+**Quand choisir quoi ?**  
+- Vous cherchez une **différence** (gain/perte) → *Différence*.  
+- Vous cherchez à **remplacer** par une alternative **non inférieure/équivalente** → *Équivalence (TOST)*.  
+
+---
+
+## 2) Panneau latéral — Paramètres généraux
+
+Le **panneau latéral** regroupe : **Essai & traitements**, **Options statistiques**, **Options générales**.
+
+![Sidebar overview](figures/intro/02_sidebar_overview.png)
+
+### 2.1 Essai & traitements
+
+**Rendement moyen (témoin)** — entrez la moyenne attendue.  
+*Exemple.* Historique = **10 t/ha** → saisissez `10`.
+
+![Mean yield](figures/intro/03_mean_yield.png)
+
+**Mode Différence — Ajouter un traitement**  
+Cliquez **Ajouter un traitement** et renseignez :
+- **Nom** : p.ex. *Azote 150 u*  
+- **Type d’effet** :  
+  - *Additif (t/ha)* → effet absolu (ex. `+0.30` t/ha)  
+  - *Multiplicatif (%)* → effet relatif (ex. `+10` %)  
+- **Valeur** : saisie tolère `+`/`-`, virgule décimale, `%` (normalisée automatiquement).
+
+![Ajout traitement](figures/intro/04_add_treatment_modal.png)
+
+Après validation, le traitement apparaît dans le **tableau** et peut être supprimé via la liste.
+
+![Tableau traitements](figures/intro/05_treatments_table.png)
+
+**Mode Équivalence (TOST) — Marge δ**  
+Choisissez l’unité de δ (**t/ha** ou **%**) puis la valeur.  
+- *Exemple (absolu).* δ = **0,30 t/ha** : toute différence dans ±0,30 t/ha est jugée négligeable.  
+- *Exemple (relatif).* δ = **5 %** autour de **10 t/ha** ≈ **±0,50 t/ha**.
+
+![Delta équivalence](figures/intro/06_equivalence_delta.png)
+
+**Comment fixer δ ?**  
+- δ doit être **agronomiquement négligeable** (coût/bénéfice, risque).  
+- Plus δ est **grand**, plus il est **facile** de conclure à l’équivalence (puissance ↑), mais la tolérance est aussi **moins exigeante**.
+
+### 2.2 Options statistiques
+
+![Options stats](figures/intro/07_stats_options.png)
+
+- **Variabilité** :  
+  - *Écart-type (t/ha)* si vous l’estimez directement ;  
+  - *Coefficient de variation (%)* sinon.  
+  *Conversion.* Pour **μ = 10 t/ha** et **CV = 15 %**, **σ ≈ 1,5 t/ha**.
+
+- **Variances** :  
+  - *Welch (recommandé)* → robuste si variances inégales/échantillons déséquilibrés ;  
+  - *Pooled* → uniquement si vous êtes **confiant** que les variances sont égales.  
+  *Règle pratique.* Si doute → **Welch**.
+
+- **Type d’hypothèse** :  
+  - *Bilatéral* (différence quelconque) ;  
+  - *Unilatéral (gain)* ou *(perte)* si la direction est justifiée **scientifiquement**.  
+  *Astuce.* Un test **unilatéral** gagne en puissance si la direction est correcte, mais est **inadapté** si la réalité va dans l’autre sens.
+
+- **Alpha (α)** : souvent **0,05**.  
+  *Plus α est grand*, plus on rejette facilement H0 (**puissance** ↑, risque d’erreur I ↑).
+
+### 2.3 Options générales
+
+![Options générales](figures/intro/08_general_options.png)
+
+- **Itérations (Monte-Carlo)** :  
+  - **1000-3000** = bon compromis.  
+  - Plus c’est élevé, plus les courbes sont **lisses** (temps de calcul ↑).
+
+---
+
+## 3) Résultats : graphique interactif
+
+![Plot puissance](figures/intro/09_plot_overview.png)
+
+
+
+
+## 5) Lancer l’application
+
+``` r
+library(nietzsche)
+run_app()
+```

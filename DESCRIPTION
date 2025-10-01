@@ -1,0 +1,42 @@
+Package: nietzsche
+Title: Nietzsche 1.0 - Trouver le bon nombre de répétitions pour optimiser la puissance d'un essai à la ferme
+Version: 1.0.0
+Authors@R: c(
+    person(given = "Cédric", family = "Bouffard",
+           role = c("aut", "cre"),
+           email = "info@cedricbouffard.com"),
+    person(given = "Bruce", family = "Gélinas",
+           role = "aut",
+           email = "Bruce.Gelinas@mapaq.gouv.qc.ca")
+  )
+Description: Application Shiny empaquetée pour estimer la puissance statistique 
+    d'essais à la ferme (tests t de Welch/pooled) et la puissance d'un test 
+    d'équivalence TOST selon une marge delta. Interface moderne (bslib) et 
+    graphiques interactifs (echarts4r). Fonctions réutilisables et tests unitaires.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: R (>= 4.1)
+Imports:
+    shiny,
+    bslib,
+    htmltools,
+    tibble,
+    dplyr,
+    purrr,
+    stats,
+    echarts4r,
+    shinycssloaders,
+    scales,
+    lifecycle
+Suggests:
+    testthat (>= 3.1.0),
+    knitr,
+    rmarkdown,
+    furrr
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+URL: https://cedricbouffard.github.io/nietzsche/
+BugReports: https://github.com/cedricbouffard/nietzsche/issues

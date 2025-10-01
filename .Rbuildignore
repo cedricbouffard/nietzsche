@@ -1,0 +1,10 @@
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^vignettes/.*\.html$
+^vignettes/.*\.R
+^README\.Rmd$
+^inst/app/www$
+^.*\.Rproj$
+^\.Rproj\.user$

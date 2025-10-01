@@ -1,0 +1,14 @@
+url: https://cedricbouffard.github.io/nietzsche/
+template:
+  bootstrap: 5
+  bslib:
+    bootswatch: flatly
+navbar:
+  structure:
+    left: [reference, articles]
+reference:
+  - title: "Lancer l'app"
+    contents:
+      - run_app
+      - simuler_puissance
+      - simuler_puissance_tost
